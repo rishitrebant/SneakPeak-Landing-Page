@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Sneak Peak — Stop Overpaying for Sneakers in India</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Syne:wght@400;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+<canvas id="gridCanvas"></canvas>
+
+<nav>
+  <div class="logo">SNEAK<em>PEAK</em></div>
+  <a href="#waitlist" class="nav-btn" id="earlyAccessBtn">Get Early Access</a>
+</nav>
+
+<section class="hero">
+  <div class="hero-left">
+    <p class="hero-eye">India's Sneaker Price Engine</p>
+    <h1 class="hero-h">Stop<br/>Overpaying<br/>for Sneakers<br/>in <em>India.</em></h1>
+    <p class="hero-sub">Compare prices across Myntra, Ajio, Flipkart and local boutiques. Your size. Best price. One place.</p>
+    <p class="hero-proof"><span class="pulse-dot"></span><span id="waitlistCount">39</span> sneakerheads already on the waitlist</p>
+    <div class="hero-ctas">
+      <a href="#waitlist" class="btn-primary">Get Early Access</a>
+      <span class="fine">No credit card &nbsp;·&nbsp; Free for early users</span>
+    </div>
+  </div>
+
+  <div class="hero-right">
+    <div class="ipc">
+      <div class="sneaker-tabs" id="sneakerTabs"></div>
+      <div class="ipc-img-wrap">
+        <span class="live-badge">Live Prices</span>
+        <img class="ipc-img" id="ipcImg" alt="sneaker"/>
+      </div>
+      <div class="ipc-name" id="ipcName">Nike Air Max 90</div>
+      <div class="ipc-mrp" id="ipcMrp"></div>
+      <div class="size-label">Select Your Size</div>
+      <div class="size-chips" id="sizeChips"></div>
+      <div class="carousel-wrap" id="carouselWrap" style="display:none">
+        <div class="carousel-header">
+          <span class="carousel-title" id="carouselTitle">0 stores found</span>
+          <div class="carousel-nav">
+            <button class="c-arrow" id="prevBtn">&#8592;</button>
+            <button class="c-arrow" id="nextBtn">&#8594;</button>
+          </div>
+        </div>
+        <div class="carousel" id="carousel"></div>
+        <div class="carousel-dots" id="carouselDots"></div>
+      </div>
+      <div id="noResults" style="display:none" class="no-results">No stores found in this size.<br/>Try an adjacent size.</div>
+    </div>
+  </div>
+</section>
+
+<div class="ticker-wrap">
+  <div class="ticker" id="ticker"></div>
+</div>
+
+<section class="sec-problem">
+  <div class="intro reveal">
+    <span class="sec-label">The Problem</span>
+    <h2 class="sec-h">Buying Sneakers<br/>in India Shouldn't<br/>Be <em>This Hard.</em></h2>
+    <p>Most sneaker buyers tab-switch for hours and still end up paying more than they should.</p>
+  </div>
+
+  <div class="versus reveal d1">
+    <div class="vs-side vs-old">
+      <p class="vs-lbl">✕ &nbsp;The Old Way &nbsp;<span style="color:var(--muted);font-size:8px">— click any window</span></p>
+      <div class="chaos" id="chaos"></div>
+      <div class="chaos-cap">Different prices · Different sizes<br/>Wrong results · No clear answer</div>
+    </div>
+    <div class="vs-div"><span class="vs-vs">VS</span></div>
+    <div class="vs-side vs-new">
+      <p class="vs-lbl">✦ &nbsp;Sneak Peak</p>
+      <div class="sp-card" id="spCard">
+        <div class="sp-card-img">
+          <img id="spCardImg" alt="sneaker"/>
+        </div>
+        <div class="sp-card-body">
+          <div class="sp-title-row">
+            <div class="sp-title" id="spTitle">Nike Air Max 90</div>
+            <div class="sp-score" id="spScore">🔥 92</div>
+          </div>
+          <div class="sp-sub" id="spSub">UK 9 &nbsp;·&nbsp; 3 STORES IN STOCK</div>
+          <div class="sp-sizes-row" id="spSizes"></div>
+          <div class="sp-rows" id="spRows"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <p class="reveal d2" style="text-align:center;margin-top:44px;font-family:var(--font-m);font-size:9px;color:var(--muted);letter-spacing:3px;text-transform:uppercase">There should be a smarter way to buy sneakers.</p>
+</section>
+
+<section class="sec-one">
+  <div class="osl reveal">
+    <span class="big">One</span><span class="big">Search.</span>
+    <span class="big g">Every</span><span class="big">Store.</span>
+    <span class="big g">Best</span><span class="big">Price.</span>
+    <p>Find the best price instantly — across every platform and local boutique, filtered to your exact size.</p>
+  </div>
+  <div class="reveal d2">
+    <div class="search-card">
+      <div class="s-bar">
+        <span class="s-icon">⌕</span>
+        <div class="s-text"><span id="typer">Nike Air Max 90</span><span class="s-cur"></span></div>
+      </div>
+      <div class="s-results" id="searchResults"></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec-stats">
+  <div class="stats-inner">
+    <div class="stats-top reveal">
+      <span class="sec-label">From 39 Indian Sneaker Buyers · Primary Research 2024</span>
+      <h2 class="sec-h">The Numbers<br/>Don't <em>Lie.</em></h2>
+    </div>
+    <div class="stats-grid reveal d1" id="statsGrid"></div>
+  </div>
+</section>
+
+<section class="sec-wait" id="waitlist">
+  <div class="wait-ghost">SP</div>
+  <div class="wait-inner reveal">
+    <span class="sec-label">Early Access</span>
+    <h2 class="wait-h">Get In<br/>Before<br/><em>It Drops.</em></h2>
+    <p class="wait-sub">Founding members get lifetime free alerts, a founding badge, and direct input on what we build next.</p>
+    <div class="wait-perks">
+      <span class="perk">Lifetime Free Alerts</span>
+      <span class="perk">Founding Member Badge</span>
+      <span class="perk">Shape the Product</span>
+    </div>
+    <div class="wait-form">
+      <input class="wait-input" type="email" placeholder="your@email.com" id="waitEmail"/>
+      <button class="wait-btn" id="joinWaitlistBtn">JOIN WAITLIST →</button>
+    </div>
+    <p class="wait-fine" id="waitMsg">No credit card &nbsp;·&nbsp; Free forever for early users</p>
+    <div class="stats-row-foot" id="statsRowFoot"></div>
+  </div>
+</section>
+
+<footer>
+  <div class="logo">SNEAK<em style="color:var(--green);font-style:normal">PEAK</em></div>
+  <p>© 2025 Sneak Peak &nbsp;·&nbsp; Built for India's Sneaker Community</p>
+  <p>sneakpeak.in</p>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>

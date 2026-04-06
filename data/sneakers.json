@@ -1,0 +1,124 @@
+[
+  {
+    "name": "Nike Air Max 90",
+    "mrp": 8495,
+    "img": "https://static.nike.com/a/images/t_PDP_1280_v1/f_auto,q_auto:eco/af53d53d-561f-450a-a483-70a7ceee380f/air-max-90-shoes-kRsBnD.png",
+    "sizes": ["UK 6", "UK 7", "UK 8", "UK 9", "UK 10", "UK 11", "UK 12"],
+    "stores": [
+      {
+        "name": "Superkicks",
+        "delivery": "2 day delivery",
+        "url": "#",
+        "stock": { "UK 7": 7000, "UK 8": 7000, "UK 9": 7000, "UK 10": 7200, "UK 11": 7200 }
+      },
+      {
+        "name": "VegNonVeg",
+        "delivery": "3 day delivery",
+        "url": "#",
+        "stock": { "UK 7": 7200, "UK 8": 7200, "UK 9": 7200, "UK 10": 7400 }
+      },
+      {
+        "name": "Myntra",
+        "delivery": "Next day delivery",
+        "url": "#",
+        "stock": { "UK 6": 7999, "UK 7": 7999, "UK 8": 7999, "UK 9": 7999, "UK 10": 7999, "UK 11": 8199, "UK 12": 8199 }
+      },
+      {
+        "name": "Ajio",
+        "delivery": "4–5 day delivery",
+        "url": "#",
+        "stock": { "UK 7": 8499, "UK 12": 8499 }
+      },
+      {
+        "name": "Flipkart",
+        "delivery": "5–7 day delivery",
+        "url": "#",
+        "stock": { "UK 8": 8299, "UK 9": 8299, "UK 10": 8299 }
+      }
+    ]
+  },
+  {
+    "name": "Nike Dunk Low Panda",
+    "mrp": 8995,
+    "img": "https://static.nike.com/a/images/t_PDP_1280_v1/f_auto,q_auto:eco/b1bcbca4-e853-4df7-b329-5f7f5ad9fef0/dunk-low-retro-shoes-76f5BR.png",
+    "sizes": ["UK 6", "UK 7", "UK 8", "UK 9", "UK 10", "UK 11"],
+    "stores": [
+      {
+        "name": "Ajio",
+        "delivery": "3–4 day delivery",
+        "url": "#",
+        "stock": { "UK 7": 7995, "UK 8": 7995, "UK 9": 7995, "UK 10": 7995 }
+      },
+      {
+        "name": "Myntra",
+        "delivery": "Next day delivery",
+        "url": "#",
+        "stock": { "UK 6": 8499, "UK 7": 8499, "UK 8": 8499, "UK 9": 8499, "UK 10": 8499, "UK 11": 8499 }
+      },
+      {
+        "name": "Superkicks",
+        "delivery": "2 day delivery",
+        "url": "#",
+        "stock": { "UK 8": 8200, "UK 9": 8200, "UK 10": 8200 }
+      }
+    ]
+  },
+  {
+    "name": "Adidas Samba OG",
+    "mrp": 9999,
+    "img": "https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/2f1f3f2a2b2d4d5e8f2d21d7c0a9a9a9_9366/Samba_OG_Shoes_White_B75806_01_standard.jpg",
+    "sizes": ["UK 6", "UK 7", "UK 8", "UK 9", "UK 10", "UK 11"],
+    "stores": [
+      {
+        "name": "VegNonVeg",
+        "delivery": "2–3 day delivery",
+        "url": "#",
+        "stock": { "UK 7": 8999, "UK 8": 8999, "UK 9": 8999, "UK 10": 8999 }
+      },
+      {
+        "name": "Crepdog Crew",
+        "delivery": "3 day delivery",
+        "url": "#",
+        "stock": { "UK 7": 9200, "UK 8": 9200, "UK 9": 9200 }
+      },
+      {
+        "name": "Myntra",
+        "delivery": "Next day delivery",
+        "url": "#",
+        "stock": { "UK 6": 9499, "UK 7": 9499, "UK 8": 9499, "UK 9": 9499, "UK 10": 9499, "UK 11": 9499 }
+      }
+    ]
+  },
+  {
+    "name": "Nike Air Force 1 White",
+    "mrp": 7495,
+    "img": "https://static.nike.com/a/images/t_PDP_1280_v1/f_auto,q_auto:eco/b7d9211a-9d7c-4f5e-9d77-e7e5e5e5e5e5/air-force-1-07-shoes-WjV7mP.png",
+    "sizes": ["UK 6", "UK 7", "UK 8", "UK 9", "UK 10", "UK 11", "UK 12"],
+    "stores": [
+      {
+        "name": "Ajio",
+        "delivery": "2–3 day delivery",
+        "url": "#",
+        "stock": { "UK 6": 6295, "UK 7": 6295, "UK 8": 6295, "UK 9": 6295, "UK 10": 6295, "UK 11": 6295 }
+      },
+      {
+        "name": "Myntra",
+        "delivery": "Next day delivery",
+        "url": "#",
+        "stock": { "UK 6": 6999, "UK 7": 6999, "UK 8": 6999, "UK 9": 6999, "UK 10": 6999, "UK 11": 6999, "UK 12": 6999 }
+      },
+      {
+        "name": "Superkicks",
+        "delivery": "2 day delivery",
+        "url": "#",
+        "stock": { "UK 7": 7000, "UK 8": 7000, "UK 9": 7000, "UK 10": 7000 }
+      },
+      {
+        "name": "Flipkart",
+        "delivery": "3–5 day delivery",
+        "url": "#",
+        "stock": { "UK 8": 6799, "UK 9": 6799, "UK 10": 6799 }
+      }
+    ]
+  }
+]
