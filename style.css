@@ -221,10 +221,6 @@ section{position:relative;z-index:1}
 .wait-btn:hover{background:var(--green2)}
 .wait-fine{font-family:var(--font-m);font-size:10px;color:var(--muted);letter-spacing:1px}
 .stats-row-foot{display:flex;gap:60px;justify-content:center;align-items:flex-start;margin-top:72px;padding-top:52px;border-top:1px solid var(--border);flex-wrap:wrap;max-width:700px;margin-left:auto;margin-right:auto}
-.foot-stat{text-align:center}
-.foot-num{font-family:var(--font-d);font-size:56px;color:var(--green);line-height:1;display:block}
-.foot-num::after{content:'%';font-size:.55em;color:rgba(184,255,0,.35)}
-.foot-lbl{font-family:var(--font-m);font-size:9px;color:var(--muted);letter-spacing:2px;text-transform:uppercase;margin-top:6px;display:block;max-width:120px;line-height:1.5}
 
 footer{padding:28px 48px;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;position:relative;z-index:1}
 footer .logo{font-size:16px;letter-spacing:5px}
