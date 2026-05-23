@@ -1,5 +1,5 @@
 // ─── SUPABASE CONFIG ───────────────────────────────────
-const SUPABASE_URL = 'https://nqoxlvswayznrzyrhebn.supabase.co/rest/v1/waitlist';        // paste from supabase project settings
+const SUPABASE_URL = 'https://nqoxlvswayznrzyrhebn.supabase.co/rest/v1';        // paste from supabase project settings
 const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im5xb3hsdnN3YXl6bnJ6eXJoZWJuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzk1NTA3MzYsImV4cCI6MjA5NTEyNjczNn0.x36GwgV1TTVcXLvwamhodvNi3oYrVjmMnq4Q3ocsFK8'; // paste anon/public key
 
 // Global variables
@@ -525,7 +525,7 @@ async function joinWaitlist(source) {
     if (btnEl) { btnEl.disabled = true; btnEl.textContent = 'JOINING...'; }
 
     try {
-        const res = await fetch(`${SUPABASE_URL}/rest/v1/waitlist`, {
+        const res = await fetch(`https://nqoxlvswayznrzyrhebn.supabase.co/rest/v1/waitlist`, {
             method: 'POST',
             headers: {
                 'apikey': SUPABASE_ANON_KEY,
