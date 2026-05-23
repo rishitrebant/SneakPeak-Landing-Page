@@ -1,5 +1,5 @@
 // ─── SUPABASE CONFIG ───────────────────────────────────
-const SUPABASE_URL = 'https://nqoxlvswayznrzyrhebn.supabase.co/rest/v1';        // paste from supabase project settings
+const SUPABASE_URL = 'https://nqoxlvswayznrzyrhebn.supabase.co';        // paste from supabase project settings
 const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im5xb3hsdnN3YXl6bnJ6eXJoZWJuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzk1NTA3MzYsImV4cCI6MjA5NTEyNjczNn0.x36GwgV1TTVcXLvwamhodvNi3oYrVjmMnq4Q3ocsFK8'; // paste anon/public key
 
 // Global variables
@@ -19,17 +19,46 @@ let sneakerTabs, spCardImg, spTitle, spSub, spSizes, spRows, spScore;
 let chaosContainer, searchResults, statsGrid, statsRowFoot;
 let waitEmail, waitMsg, joinWaitlistBtn, waitlistCountSpan;
 
+async function updateWaitlistCount() {
+    try {
+        const res = await fetch(
+            'https://nqoxlvswayznrzyrhebn.supabase.co/rest/v1/waitlist?select=id',
+            {
+                headers: {
+                    'apikey': SUPABASE_ANON_KEY,
+                    'Authorization': `Bearer ${SUPABASE_ANON_KEY}`
+                }
+            }
+        );
+
+        const data = await res.json();
+
+        waitlistCount = data.length;
+
+        const countEl = document.getElementById('waitlistCount');
+
+        if (countEl) {
+            countEl.textContent = waitlistCount;
+        }
+
+    } catch (err) {
+        console.error('Waitlist count error:', err);
+    }
+}
+
 // Load sneakers data from JSON
 async function loadSneakers() {
     try {
         const response = await fetch('data/sneakers.json');
         sneakersData = await response.json();
         initializeApp();
+        updateWaitlistCount();
     } catch (error) {
         console.error('Error loading sneakers data:', error);
         // Fallback to embedded data
         sneakersData = getFallbackData();
         initializeApp();
+        updateWaitlistCount();
     }
 }
 
@@ -543,7 +572,7 @@ async function joinWaitlist(source) {
         if (res.status === 201) {
             // ✅ success
             submittedEmails.add(email);
-            waitlistCount++;
+            await updateWaitlistCount();
             document.querySelectorAll('#waitlistCount').forEach(el => el.textContent = waitlistCount);
 
             msgEl.textContent = `🎉 You're #${waitlistCount} on the list — we'll be in touch!`;
