@@ -1,3 +1,7 @@
+// ─── SUPABASE CONFIG ───────────────────────────────────
+const SUPABASE_URL = 'https://nqoxlvswayznrzyrhebn.supabase.co/rest/v1/';        // paste from supabase project settings
+const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im5xb3hsdnN3YXl6bnJ6eXJoZWJuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzk1NTA3MzYsImV4cCI6MjA5NTEyNjczNn0.x36GwgV1TTVcXLvwamhodvNi3oYrVjmMnq4Q3ocsFK8'; // paste anon/public key
+
 // Global variables
 let sneakersData = [];
 let activeSneaker = 0;
@@ -5,7 +9,8 @@ let activeSize = null;
 let carouselIdx = 0;
 let carouselItems = [];
 let maxZ = 10;
-let waitlistCount = 39;
+let waitlistCount = 0;
+let submittedEmails = new Set();
 
 // DOM Elements
 let ipcImg, ipcName, ipcMrp, sizeChips, carouselWrap, noResults;
@@ -128,7 +133,25 @@ function initializeApp() {
     joinWaitlistBtn.addEventListener('click', joinWaitlist);
     
     // Update waitlist count display
-    waitlistCountSpan.textContent = waitlistCount;
+    fetch(`${SUPABASE_URL}/rest/v1/waitlist?select=id`, {
+    headers: {
+        'apikey': SUPABASE_ANON_KEY,
+        'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
+        'Prefer': 'count=exact',
+        'Range': '0-0'
+    }
+}).then(res => {
+    const range = res.headers.get('content-range'); // "0-0/42"
+    if (range) {
+        const total = parseInt(range.split('/')[1]);
+        if (!isNaN(total)) {
+            waitlistCount = total;
+            document.querySelectorAll('#waitlistCount').forEach(el => el.textContent = total);
+        }
+    }
+}).catch(() => {
+    document.querySelectorAll('#waitlistCount').forEach(el => el.textContent = 39);
+});
 }
 
 function renderSneakerTabs() {
@@ -462,35 +485,135 @@ function updateSPCard() {
     }).join('');
 }
 
-function joinWaitlist() {
-    const email = waitEmail.value.trim();
-    if (!email || !email.includes('@')) {
-        waitMsg.textContent = '✕ Enter a valid email.';
-        waitMsg.style.color = '#ff4444';
+// ─── EMAIL VALIDATION ──────────────────────────────────
+function isValidEmail(e) {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(e);
+}
+
+// ─── MAIN SIGNUP FUNCTION ──────────────────────────────
+async function joinWaitlist(source) {
+    source = source || 'waitlist';
+
+    // figure out which input/msg/btn to use
+    let inputEl, msgEl, btnEl;
+    if (source === 'modal') {
+        inputEl = document.getElementById('modalEmail');
+        msgEl   = document.getElementById('modalMsg');
+        btnEl   = document.getElementById('modalBtn');
+    } else {
+        inputEl = waitEmail;
+        msgEl   = waitMsg;
+        btnEl   = joinWaitlistBtn;
+    }
+
+    const email = inputEl.value.trim();
+
+    if (!isValidEmail(email)) {
+        msgEl.textContent = '✕ Enter a valid email address.';
+        msgEl.style.color = '#ff4444';
+        inputEl.focus();
         return;
     }
-    
-    // Increment waitlist count
-    waitlistCount++;
-    waitlistCountSpan.textContent = waitlistCount;
-    
-    // Here you would send to your backend/webhook
-    // fetch('https://your-n8n-webhook.com/waitlist', {
-    //     method: 'POST',
-    //     body: JSON.stringify({ email }),
-    //     headers: { 'Content-Type': 'application/json' }
-    // });
-    
-    waitMsg.textContent = '✓ You\'re in — we\'ll be in touch before launch.';
-    waitMsg.style.color = 'var(--green)';
-    waitEmail.value = '';
-    
-    // Reset message after 3 seconds
-    setTimeout(() => {
-        waitMsg.textContent = 'No credit card &nbsp;·&nbsp; Free forever for early users';
-        waitMsg.style.color = 'var(--muted)';
-    }, 3000);
+
+    if (submittedEmails.has(email)) {
+        msgEl.textContent = '✓ You\'re already on the list!';
+        msgEl.style.color = 'var(--green)';
+        return;
+    }
+
+    // loading state
+    if (btnEl) { btnEl.disabled = true; btnEl.textContent = 'JOINING...'; }
+
+    try {
+        const res = await fetch(`${SUPABASE_URL}/rest/v1/waitlist`, {
+            method: 'POST',
+            headers: {
+                'apikey': SUPABASE_ANON_KEY,
+                'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
+                'Content-Type': 'application/json',
+                'Prefer': 'return=minimal'
+            },
+            body: JSON.stringify({
+                email: email.toLowerCase(),
+                source: source,
+                signed_up_at: new Date().toISOString()
+            })
+        });
+
+        if (res.status === 201) {
+            // ✅ success
+            submittedEmails.add(email);
+            waitlistCount++;
+            document.querySelectorAll('#waitlistCount').forEach(el => el.textContent = waitlistCount);
+
+            msgEl.textContent = `🎉 You're #${waitlistCount} on the list — we'll be in touch!`;
+            msgEl.style.color = 'var(--green)';
+            inputEl.value = '';
+
+            // if modal, swap to success screen after short delay
+            if (source === 'modal') setTimeout(showModalSuccess, 500);
+
+        } else if (res.status === 409) {
+            // duplicate email
+            msgEl.textContent = '✓ You\'re already on the list — see you at launch!';
+            msgEl.style.color = 'var(--green)';
+        } else {
+            throw new Error('Unexpected status: ' + res.status);
+        }
+
+    } catch (err) {
+        console.error(err);
+        msgEl.textContent = '✕ Something went wrong. Try again!';
+        msgEl.style.color = '#ff4444';
+    } finally {
+        if (btnEl) {
+            btnEl.disabled = false;
+            btnEl.textContent = source === 'modal' ? 'GET EARLY ACCESS →' : 'JOIN WAITLIST →';
+        }
+    }
 }
+
+// ─── MODAL HELPERS ─────────────────────────────────────
+function openModal() {
+    document.getElementById('spModal').classList.add('open');
+    document.body.style.overflow = 'hidden';
+    setTimeout(() => document.getElementById('modalEmail').focus(), 300);
+}
+
+function closeModal() {
+    document.getElementById('spModal').classList.remove('open');
+    document.body.style.overflow = '';
+}
+
+function showModalSuccess() {
+    const card = document.querySelector('#spModal .modal-card');
+    card.innerHTML = `
+        <button class="modal-close" onclick="closeModal()">✕</button>
+        <div style="text-align:center;padding:16px 0">
+            <div style="font-size:52px;margin-bottom:12px">🎉</div>
+            <div class="modal-logo">SNEAK<em>PEAK</em></div>
+            <h3 class="modal-title" style="margin-top:16px">You're <em>In!</em></h3>
+            <p class="modal-sub">You're <strong style="color:var(--green)">#${waitlistCount}</strong> on the list.<br/>We'll be in touch before launch.</p>
+            <button class="modal-btn" style="margin-top:28px" onclick="closeModal()">CLOSE ✕</button>
+        </div>`;
+}
+
+// close modal on Escape
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+// Enter key on waitlist input
+document.addEventListener('keydown', e => {
+    if (e.key !== 'Enter') return;
+    const a = document.activeElement;
+    if (a && a.id === 'waitEmail') joinWaitlist('waitlist');
+    if (a && a.id === 'modalEmail') joinWaitlist('modal');
+});
+
+// mobile sticky: show after 300px scroll
+window.addEventListener('scroll', () => {
+    const bar = document.getElementById('mobileSticky');
+    if (bar) bar.classList.toggle('visible', window.scrollY > 300);
+});
 
 // Canvas Grid Animation
 const canvas = document.getElementById('gridCanvas');

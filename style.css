@@ -239,3 +239,43 @@ footer p{font-family:var(--font-m);font-size:10px;color:var(--muted);letter-spac
   .sec-one{grid-template-columns:1fr;padding:80px 24px;gap:40px}.stats-grid{grid-template-columns:1fr}
   .sec-stats,.sec-problem,.sec-wait{padding:80px 24px}footer{flex-direction:column;gap:12px;text-align:center}
 }
+
+
+/* ── MODAL ──────────────────────────────────────────── */
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,0);backdrop-filter:blur(0px);z-index:9999;display:flex;align-items:center;justify-content:center;padding:20px;opacity:0;pointer-events:none;transition:opacity .3s ease,backdrop-filter .3s ease,background .3s ease}
+.modal-overlay.open{opacity:1;pointer-events:all;background:rgba(0,0,0,.88);backdrop-filter:blur(18px)}
+.modal-card{background:#111;border:1px solid #2a2a2a;border-radius:20px;padding:40px;width:100%;max-width:420px;position:relative;transform:scale(.92) translateY(24px);transition:transform .35s cubic-bezier(.34,1.56,.64,1),opacity .3s ease;opacity:0;max-height:90vh;overflow-y:auto}
+.modal-overlay.open .modal-card{transform:scale(1) translateY(0);opacity:1}
+.modal-close{position:absolute;top:14px;right:16px;background:none;border:none;color:var(--muted);font-size:18px;cursor:pointer;padding:4px 8px;transition:color .2s;line-height:1}
+.modal-close:hover{color:var(--white)}
+.modal-logo{font-family:var(--font-d);font-size:18px;letter-spacing:4px;color:var(--white)}
+.modal-logo em{color:var(--green);font-style:normal}
+.modal-title{font-family:var(--font-d);font-size:clamp(36px,6vw,52px);line-height:.95;text-transform:uppercase;margin:14px 0 10px;color:var(--white)}
+.modal-title em{color:var(--green);font-style:normal}
+.modal-sub{font-size:13px;color:var(--muted2);line-height:1.6;margin-bottom:18px}
+.modal-perks{display:flex;flex-direction:column;gap:8px;margin-bottom:22px}
+.modal-perks span{font-family:var(--font-m);font-size:11px;color:var(--muted2);letter-spacing:.4px}
+.modal-input{width:100%;background:var(--card);border:1px solid var(--border2);outline:none;padding:14px 16px;font-family:var(--font-m);font-size:13px;color:var(--white);letter-spacing:.4px;display:block;margin-bottom:10px;transition:border-color .2s,box-shadow .2s;box-sizing:border-box}
+.modal-input::placeholder{color:var(--muted)}
+.modal-input:focus{border-color:var(--green);box-shadow:0 0 0 3px rgba(184,255,0,.08)}
+.modal-btn{width:100%;font-family:var(--font-m);font-size:10px;color:var(--black);background:var(--green);border:none;padding:16px;cursor:pointer;letter-spacing:2px;font-weight:700;transition:background .2s;display:block}
+.modal-btn:hover{background:var(--green2)}
+.modal-btn:disabled{opacity:.6;cursor:not-allowed}
+.modal-msg{font-family:var(--font-m);font-size:11px;letter-spacing:.4px;margin-top:10px;min-height:16px;text-align:center}
+.modal-fine{font-family:var(--font-m);font-size:10px;color:var(--muted);letter-spacing:1px;text-align:center;margin-top:8px}
+
+/* ── MOBILE STICKY BAR ──────────────────────────────── */
+.mobile-sticky{display:none;position:fixed;bottom:0;left:0;right:0;z-index:500;background:rgba(10,10,10,.97);backdrop-filter:blur(20px);border-top:1px solid var(--border2);padding:14px 20px 24px;align-items:center;justify-content:space-between;gap:12px;transform:translateY(100%);transition:transform .4s cubic-bezier(.25,.46,.45,.94)}
+.mobile-sticky.visible{transform:translateY(0)}
+.mobile-sticky-text{display:flex;flex-direction:column;gap:3px}
+.mobile-sticky-text strong{font-family:var(--font-b);font-size:14px;color:var(--white)}
+.mobile-sticky-text span{font-family:var(--font-m);font-size:10px;color:var(--muted);letter-spacing:.5px}
+.mobile-sticky-btn{font-family:var(--font-m);font-size:11px;color:var(--black);background:var(--green);border:none;padding:12px 24px;cursor:pointer;letter-spacing:1.5px;font-weight:700;white-space:nowrap;transition:background .2s}
+.mobile-sticky-btn:hover{background:var(--green2)}
+
+/* ── MOBILE: show sticky, add bottom padding ─────────── */
+@media(max-width:900px){
+  .mobile-sticky{display:flex}
+  .sec-wait{padding-bottom:110px}
+  footer{padding-bottom:90px}
+}

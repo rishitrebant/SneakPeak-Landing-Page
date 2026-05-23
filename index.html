@@ -14,7 +14,7 @@
 
 <nav>
   <div class="logo">SNEAK<em>PEAK</em></div>
-  <a href="#waitlist" class="nav-btn" id="earlyAccessBtn">Get Early Access</a>
+  <button class="nav-btn" id="earlyAccessBtn" onclick="openModal()">Get Early Access</button>
 </nav>
 
 <section class="hero">
@@ -148,6 +148,34 @@
   <p>© 2025 Sneak Peak &nbsp;·&nbsp; Built for India's Sneaker Community</p>
   <p>sneakpeak.in</p>
 </footer>
+
+<!-- ── SIGNUP MODAL ─────────────────────────── -->
+<div class="modal-overlay" id="spModal" onclick="closeModal()">
+  <div class="modal-card" onclick="event.stopPropagation()">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    <div class="modal-logo">SNEAK<em>PEAK</em></div>
+    <h3 class="modal-title">Get In Before<br/><em>It Drops.</em></h3>
+    <p class="modal-sub">Founding members get lifetime free alerts and a founding badge.</p>
+    <div class="modal-perks">
+      <span>✦ &nbsp;Lifetime free price alerts</span>
+      <span>✦ &nbsp;Founding member badge</span>
+      <span>✦ &nbsp;Shape what we build</span>
+    </div>
+    <input class="modal-input" type="email" placeholder="your@email.com" id="modalEmail" autocomplete="email"/>
+    <button class="modal-btn" id="modalBtn" onclick="joinWaitlist('modal')">GET EARLY ACCESS →</button>
+    <p class="modal-msg" id="modalMsg"></p>
+    <p class="modal-fine">No credit card &nbsp;·&nbsp; Free forever for early users</p>
+  </div>
+</div>
+
+<!-- ── MOBILE STICKY BAR ─────────────────────── -->
+<div class="mobile-sticky" id="mobileSticky">
+  <div class="mobile-sticky-text">
+    <strong>Get Early Access</strong>
+    <span>Free · Founding member rate</span>
+  </div>
+  <button class="mobile-sticky-btn" onclick="openModal()">Join →</button>
+</div>
 
 <script src="script.js"></script>
 </body>
