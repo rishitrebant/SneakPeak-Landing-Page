@@ -346,11 +346,110 @@ footer p{font-family:var(--font-m);font-size:10px;color:var(--muted);letter-spac
 }
 .sc-stock.in::before { background: var(--muted2); }
 
-/* ── IPC card: reduce green glow on image ── */
-.ipc-img { filter: drop-shadow(0 8px 20px rgba(0,0,0,0.5)); }
-.ipc-img-wrap { background: radial-gradient(ellipse at center, rgba(255,255,255,0.03) 0%, transparent 70%); }
-.ipc::after { background: linear-gradient(90deg, transparent, rgba(255,255,255,0.06) 50%, transparent); }
+/* ── PHONE CARD GREEN FIX ───────────────────────────── */
 
+/* outer card */
+.ipc{
+    background: linear-gradient(
+        180deg,
+        rgba(18,18,18,0.98) 0%,
+        rgba(10,10,10,0.98) 100%
+    );
+    
+    border: 1px solid rgba(255,255,255,0.08);
+    
+    box-shadow:
+        0 20px 60px rgba(0,0,0,0.55),
+        inset 0 1px 0 rgba(255,255,255,0.03);
+}
+
+/* top line */
+.ipc::after{
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(200,255,80,0.18) 50%,
+        transparent
+    );
+}
+
+/* image container */
+.ipc-img-wrap{
+    background:
+        radial-gradient(
+            ellipse at center,
+            rgba(200,255,80,0.045) 0%,
+            rgba(255,255,255,0.015) 45%,
+            transparent 75%
+        );
+        
+    border: 1px solid rgba(255,255,255,0.04);
+    
+    box-shadow:
+        inset 0 0 40px rgba(255,255,255,0.015);
+}
+
+/* sneaker image */
+.ipc-img{
+    filter:
+        drop-shadow(0 12px 28px rgba(0,0,0,0.65));
+        
+    transition:
+        transform .45s ease,
+        filter .35s ease;
+}
+
+.ipc-img:hover{
+    transform: scale(1.04) rotate(-1.5deg);
+
+    filter:
+        drop-shadow(0 16px 34px rgba(0,0,0,0.75));
+}
+
+/* live badge */
+.live-badge{
+    background: rgba(200,255,80,0.9);
+    
+    color: #050505;
+
+    box-shadow:
+        0 0 20px rgba(200,255,80,0.12);
+}
+
+/* active sneaker tab */
+.s-tab.active{
+    border-color: rgba(200,255,80,0.28);
+
+    background: rgba(200,255,80,0.05);
+
+    color: #f5f5f5;
+}
+
+/* selected size */
+.sz.sel{
+    border-color: rgba(200,255,80,0.25);
+
+    background: rgba(200,255,80,0.04);
+
+    color: #ffffff;
+}
+
+/* best card subtle glow */
+.store-card.winner{
+    border-color: rgba(200,255,80,0.18);
+
+    background:
+        linear-gradient(
+            180deg,
+            rgba(200,255,80,0.03),
+            rgba(255,255,255,0.015)
+        );
+}
+
+/* winner left strip */
+.store-card.winner::before{
+    background: rgba(200,255,80,0.85);
+}
 /* ── Active tab: border only, no green text ── */
 .s-tab.active { border-color: rgba(255,255,255,0.25); color: var(--white); background: rgba(255,255,255,0.04); }
 
