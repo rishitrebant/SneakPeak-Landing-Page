@@ -13,8 +13,22 @@
 <canvas id="gridCanvas"></canvas>
 
 <nav>
-  <div class="logo">SNEAK<em>PEAK</em></div>
-  <button class="nav-btn" id="earlyAccessBtn" onclick="openModal()">Get Early Access</button>
+  <div class="logo">
+    <svg viewBox="0 0 480 80" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:200px;height:auto">
+      <g transform="translate(0,8)">
+        <rect x="2" y="46" width="62" height="7" rx="3.5" fill="#b8ff00"/>
+        <path d="M8 46 C8 46 6 28 18 22 C28 17 38 20 44 24 L62 24 C66 24 68 28 66 32 L64 46 Z" fill="#0a0a0a" stroke="#b8ff00" stroke-width="1.5"/>
+        <path d="M8 46 C8 46 6 36 12 30 C16 26 22 24 26 24" stroke="#b8ff00" stroke-width="1" opacity="0.4" fill="none" stroke-linecap="round"/>
+        <line x1="28" y1="24" x2="32" y2="32" stroke="#b8ff00" stroke-width="0.8" opacity="0.5"/>
+        <line x1="35" y1="22" x2="38" y2="31" stroke="#b8ff00" stroke-width="0.8" opacity="0.5"/>
+        <line x1="42" y1="21" x2="44" y2="30" stroke="#b8ff00" stroke-width="0.8" opacity="0.5"/>
+        <rect x="60" y="28" width="4" height="12" rx="2" fill="#b8ff00" opacity="0.7"/>
+      </g>
+      <text x="80" y="58" font-family="'Bebas Neue',sans-serif" font-size="52" letter-spacing="4" fill="#f0f0eb">SNEAK</text>
+      <text x="270" y="58" font-family="'Bebas Neue',sans-serif" font-size="52" letter-spacing="4" fill="#b8ff00">PEAK</text>
+    </svg>
+  </div>
+  <a href="#waitlist" class="nav-btn">Get Early Access</a>
 </nav>
 
 <section class="hero">
@@ -147,29 +161,24 @@
 </section>
 
 <footer>
-  <div class="logo">SNEAK<em style="color:var(--green);font-style:normal">PEAK</em></div>
-  <p>© 2025 Sneak Peak &nbsp;·&nbsp; Built for India's Sneaker Community</p>
-  <p>sneakpeak.in</p>
-</footer>
-
-<!-- ── SIGNUP MODAL ─────────────────────────── -->
-<div class="modal-overlay" id="spModal" onclick="closeModal()">
-  <div class="modal-card" onclick="event.stopPropagation()">
-    <button class="modal-close" onclick="closeModal()">✕</button>
-    <div class="modal-logo">SNEAK<em>PEAK</em></div>
-    <h3 class="modal-title">Get In Before<br/><em>It Drops.</em></h3>
-    <p class="modal-sub">Founding members get lifetime free alerts and a founding badge.</p>
-    <div class="modal-perks">
-      <span>✦ &nbsp;Lifetime free price alerts</span>
-      <span>✦ &nbsp;Founding member badge</span>
-      <span>✦ &nbsp;Shape what we build</span>
-    </div>
-    <input class="modal-input" type="email" placeholder="your@email.com" id="modalEmail" autocomplete="email"/>
-    <button class="modal-btn" id="modalBtn" onclick="joinWaitlist('modal')">GET EARLY ACCESS →</button>
-    <p class="modal-msg" id="modalMsg"></p>
-    <p class="modal-fine">No credit card &nbsp;·&nbsp; Free forever for early users</p>
+  <div class="logo">
+    <svg viewBox="0 0 480 80" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:160px;height:auto">
+      <g transform="translate(0,8)">
+        <rect x="2" y="46" width="62" height="7" rx="3.5" fill="#b8ff00"/>
+        <path d="M8 46 C8 46 6 28 18 22 C28 17 38 20 44 24 L62 24 C66 24 68 28 66 32 L64 46 Z" fill="#0a0a0a" stroke="#b8ff00" stroke-width="1.5"/>
+        <path d="M8 46 C8 46 6 36 12 30 C16 26 22 24 26 24" stroke="#b8ff00" stroke-width="1" opacity="0.4" fill="none" stroke-linecap="round"/>
+        <line x1="28" y1="24" x2="32" y2="32" stroke="#b8ff00" stroke-width="0.8" opacity="0.5"/>
+        <line x1="35" y1="22" x2="38" y2="31" stroke="#b8ff00" stroke-width="0.8" opacity="0.5"/>
+        <line x1="42" y1="21" x2="44" y2="30" stroke="#b8ff00" stroke-width="0.8" opacity="0.5"/>
+        <rect x="60" y="28" width="4" height="12" rx="2" fill="#b8ff00" opacity="0.7"/>
+      </g>
+      <text x="80" y="58" font-family="'Bebas Neue',sans-serif" font-size="52" letter-spacing="4" fill="#f0f0eb">SNEAK</text>
+      <text x="270" y="58" font-family="'Bebas Neue',sans-serif" font-size="52" letter-spacing="4" fill="#b8ff00">PEAK</text>
+    </svg>
   </div>
-</div>
+  <p>© 2026 Sneak Peak &nbsp;·&nbsp; Built for India's Sneaker Community</p>
+  <p>sneakpeak.co.in</p>
+</footer>
 
 <!-- ── MOBILE STICKY BAR ─────────────────────── -->
 <div class="mobile-sticky" id="mobileSticky">
@@ -177,9 +186,14 @@
     <strong>Get Early Access</strong>
     <span>Free · Founding member rate</span>
   </div>
-  <button class="mobile-sticky-btn" onclick="openModal()">Join →</button>
+  <a href="#waitlist" class="mobile-sticky-btn">Join →</a>
 </div>
 
+<script>
+  // Modal removed — stub out any script.js calls to openModal/closeModal
+  function openModal(){}
+  function closeModal(){}
+</script>
 <script src="script.js"></script>
 </body>
 </html>
