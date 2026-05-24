@@ -279,3 +279,112 @@ footer p{font-family:var(--font-m);font-size:10px;color:var(--muted);letter-spac
   .sec-wait{padding-bottom:110px}
   footer{padding-bottom:90px}
 }
+/* ─── Search result link arrow ─── */
+.s-link {
+    display: inline-block;
+    font-size: 11px;
+    color: var(--muted);
+    text-decoration: none;
+    margin-left: 6px;
+    transition: color .2s;
+}
+.s-link:hover { color: var(--green); }
+
+/* ─── SP score — remove emoji, clean number ─── */
+.sp-score {
+    font-family: var(--font-m);
+    font-size: 10px;
+    letter-spacing: 2px;
+    color: var(--green);
+    background: rgba(184,255,0,.08);
+    border: 1px solid rgba(184,255,0,.2);
+    padding: 3px 8px;
+    border-radius: 4px;
+}
+
+/* ═══════════════════════════════════════════════════
+   ACCENT COLOUR DISCIPLINE — green ~10% only
+   Overrides below kill excess green. Green stays on:
+   logo, primary CTAs, 1x em per section, BEST badge,
+   winner left-border strip. Everything else = white/muted.
+   ═══════════════════════════════════════════════════ */
+
+/* ── Stat numbers: green → white ── */
+.stat-num { color: var(--white); }
+.stat-num::after { color: rgba(240,240,235,0.18); }
+.stat-block:hover::before { background: var(--border2); } /* no green flash on hover */
+
+/* ── Hero eyebrow + proof count: green → muted ── */
+.hero-eye { color: var(--muted2); }
+.hero-proof { color: var(--muted2); }
+.pulse-dot { background: var(--muted2); }
+@keyframes pulseAnim{0%,100%{box-shadow:0 0 0 0 rgba(200,200,200,0.2)}50%{box-shadow:0 0 0 6px rgba(200,200,200,0)}}
+
+/* ── Ticker prices: green → muted white ── */
+.t-price { color: var(--muted2); }
+.t-dot { background: var(--border2); }
+
+/* ── "One Search. Every Store." alternate words: dim white not green ── */
+.osl .big.g { color: rgba(240,240,235,0.22); }
+
+/* ── Winner card: price + store name stay white, only border strip is green ── */
+.store-card.winner .sc-price { color: var(--white); }
+.store-card.winner .sc-store { color: var(--white); }
+
+/* ── Discount % badge: dimmer ── */
+.sc-badge-pct {
+  color: var(--muted2);
+  background: rgba(255,255,255,0.04);
+  border-color: var(--border2);
+}
+
+/* ── Stock "In Stock" chip: muted not green ── */
+.sc-stock.in {
+  color: var(--muted2);
+  background: rgba(255,255,255,0.03);
+  border-color: var(--border2);
+}
+.sc-stock.in::before { background: var(--muted2); }
+
+/* ── IPC card: reduce green glow on image ── */
+.ipc-img { filter: drop-shadow(0 8px 20px rgba(0,0,0,0.5)); }
+.ipc-img-wrap { background: radial-gradient(ellipse at center, rgba(255,255,255,0.03) 0%, transparent 70%); }
+.ipc::after { background: linear-gradient(90deg, transparent, rgba(255,255,255,0.06) 50%, transparent); }
+
+/* ── Active tab: border only, no green text ── */
+.s-tab.active { border-color: rgba(255,255,255,0.25); color: var(--white); background: rgba(255,255,255,0.04); }
+
+/* ── Size chip selected: white not green ── */
+.sz.sel { border-color: rgba(255,255,255,0.35); color: var(--white); background: rgba(255,255,255,0.05); }
+.sz:hover { border-color: rgba(255,255,255,0.2); color: rgba(255,255,255,0.5); }
+
+/* ── Carousel nav hover: white not green ── */
+.c-arrow:hover { border-color: rgba(255,255,255,0.25); color: var(--white); background: rgba(255,255,255,0.04); }
+
+/* ── Active dot: white not green ── */
+.c-dot.active { background: rgba(255,255,255,0.6); }
+
+/* ── SP Card (Sneak Peak demo card): reduce green ── */
+.sp-card { border-color: var(--border2); }
+.sp-card-img { background: radial-gradient(ellipse at 50% 60%, rgba(255,255,255,0.03) 0%, transparent 70%); border-bottom-color: var(--border); }
+.sp-card-img img { filter: drop-shadow(0 8px 16px rgba(0,0,0,0.6)); }
+.sp-score { color: var(--muted2); background: rgba(255,255,255,0.04); border-color: var(--border2); }
+
+/* SP best row: white not green */
+.sp-row.b { border-color: var(--border2); background: rgba(255,255,255,0.03); }
+.sp-row.b .sp-rn { color: var(--white); }
+.sp-row.b .sp-rp { color: var(--white); }
+.sp-row.b .sp-r-dot { background: var(--muted2); }
+.sp-sz.on { border-color: rgba(255,255,255,0.25); color: var(--white); background: rgba(255,255,255,0.04); }
+
+/* ── Search section ── */
+.search-card::after { background: linear-gradient(90deg, transparent, rgba(255,255,255,0.06), transparent); }
+.s-cur { background: rgba(255,255,255,0.7); } /* cursor blink: white */
+.s-row.win .s-retailer { color: var(--white); } /* winner retailer: white */
+.s-price.g { color: var(--white); } /* best price: white */
+
+/* ── VS card new side label: muted not green ── */
+.vs-new .vs-lbl { color: var(--muted2); }
+
+/* ── Modal focus glow: very subtle ── */
+.modal-input:focus { border-color: rgba(255,255,255,0.2); box-shadow: 0 0 0 3px rgba(255,255,255,0.03); }
